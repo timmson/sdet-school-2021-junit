@@ -1,4 +1,4 @@
-package ru.technicalExcellence.codingDojo;
+package school.sdet.v2021;
 
 public interface RomanNumerals {
 
