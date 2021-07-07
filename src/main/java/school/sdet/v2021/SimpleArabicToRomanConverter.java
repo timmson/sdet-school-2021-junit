@@ -1,9 +1,9 @@
 package school.sdet.v2021;
 
-public class SimpleRomanNumerals implements RomanNumerals {
+public class SimpleArabicToRomanConverter implements ArabicToRomanConverter {
 
     @Override
-    public String transform(int number) throws NotValidNumberException {
+    public String convert(int number) throws NotValidNumberException {
         if (number < 0 || number > 200) {
             throw new NotValidNumberException(number);
         }
@@ -21,7 +21,7 @@ public class SimpleRomanNumerals implements RomanNumerals {
         }
 
         if (number < 9) {
-            return "V" + transform(number - 5);
+            return "V" + convert(number - 5);
         }
 
         if (number < 10) {
@@ -29,21 +29,21 @@ public class SimpleRomanNumerals implements RomanNumerals {
         }
 
         if (number < 40) {
-            return "X".repeat(number / 10) + transform(number % 10);
+            return "X".repeat(number / 10) + convert(number % 10);
         }
 
         if (number < 50) {
-            return "XL" + transform(number - 40);
+            return "XL" + convert(number - 40);
         }
 
         if (number < 90) {
-            return "L" + transform(number - 50);
+            return "L" + convert(number - 50);
         }
 
         if (number < 100) {
-            return "XC" + transform(number - 90);
+            return "XC" + convert(number - 90);
         }
 
-        return "C" + transform(number - 100);
+        return "C" + convert(number - 100);
     }
 }

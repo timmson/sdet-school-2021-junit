@@ -3,19 +3,19 @@ package school.sdet.v2021.task2;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 import school.sdet.v2021.NotValidNumberException;
-import school.sdet.v2021.ObfuscatedRomanNumerals;
-import school.sdet.v2021.RomanNumerals;
+import school.sdet.v2021.ObfuscatedArabicToRomanConverter;
+import school.sdet.v2021.ArabicToRomanConverter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RomanNumeralsShould {
+public class ArabicToRomanConverterShould {
 
-    private RomanNumerals romanNumerals;
+    private ArabicToRomanConverter arabicToRomanConverter;
 
     @BeforeEach
     void beforeEach() {
-        romanNumerals = new ObfuscatedRomanNumerals();
+        arabicToRomanConverter = new ObfuscatedArabicToRomanConverter();
     }
 
     @Test
@@ -24,7 +24,7 @@ public class RomanNumeralsShould {
         final var number = 0;
 
         // Action
-        final var result = romanNumerals.transform(number);
+        final var result = arabicToRomanConverter.convert(number);
 
         // Assert
         assertEquals("", result);
@@ -47,7 +47,7 @@ public class RomanNumeralsShould {
         final var arrange = -1;
 
         // Action
-        final Executable action = () -> romanNumerals.transform(arrange);
+        final Executable action = () -> arabicToRomanConverter.convert(arrange);
 
         // Assert
         assertThrows(NotValidNumberException.class, action);

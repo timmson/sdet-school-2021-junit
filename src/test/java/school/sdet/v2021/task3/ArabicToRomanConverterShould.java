@@ -4,16 +4,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import school.sdet.v2021.RomanNumerals;
-import school.sdet.v2021.SimpleRomanNumerals;
+import school.sdet.v2021.ArabicToRomanConverter;
+import school.sdet.v2021.SimpleArabicToRomanConverter;
 
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RomanNumeralsShould {
+public class ArabicToRomanConverterShould {
 
-    private RomanNumerals romanNumerals;
+    private ArabicToRomanConverter arabicToRomanConverter;
 
     private static Stream<Arguments> data() {
         return Stream.of(
@@ -29,13 +29,13 @@ public class RomanNumeralsShould {
 
     @BeforeEach
     void beforeEach() {
-        romanNumerals = new SimpleRomanNumerals();
+        arabicToRomanConverter = new SimpleArabicToRomanConverter();
     }
 
     @ParameterizedTest
     @MethodSource("data")
     void transformToRoman(Integer arrange, String expected) {
-        final var result = romanNumerals.transform(arrange);
+        final var result = arabicToRomanConverter.convert(arrange);
 
         assertEquals(expected, result);
     }

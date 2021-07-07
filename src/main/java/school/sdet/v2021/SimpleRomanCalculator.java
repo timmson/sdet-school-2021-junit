@@ -1,36 +1,35 @@
 package school.sdet.v2021;
 
 import java.util.function.BiFunction;
-import java.util.stream.IntStream;
 
 class SimpleRomanCalculator implements RomanCalculator {
 
-    private RomanNumerals romanNumeral;
+    private final ArabicToRomanConverter arabicToRomanConverter;
 
-    public SimpleRomanCalculator(RomanNumerals romanNumeral) {
-        this.romanNumeral = romanNumeral;
+    private final RomanToArabicConverter romanToArabicConverter;
+
+    public SimpleRomanCalculator(ArabicToRomanConverter arabicToRomanConverter, RomanToArabicConverter romanToArabicConverter) {
+        this.arabicToRomanConverter = arabicToRomanConverter;
+        this.romanToArabicConverter = romanToArabicConverter;
     }
 
     @Override
     public String add(String a, String b) {
-        return romanNumeral.transform(operation(a, b, Integer::sum));
+        return operation(a, b, Integer::sum);
     }
 
     @Override
     public String multiply(String a, String b) {
-        return romanNumeral.transform(operation(a, b, (i1, i2) -> i1 * i2));
+        return operation(a, b, (i1, i2) -> i1 * i2);
     }
 
     @Override
     public String subtract(String a, String b) {
-        return romanNumeral.transform(operation(a, b, (i1, i2) -> i1 - i2));
+        return operation(a, b, (i1, i2) -> i1 - i2);
     }
 
-    protected int operation(String a, String b, BiFunction<Integer, Integer, Integer> function) {
-        return function.apply(romanToArabic(a), romanToArabic(b));
+    protected String operation(String a, String b, BiFunction<Integer, Integer, Integer> function) {
+        return arabicToRomanConverter.convert(function.apply(romanToArabicConverter.convert(a), romanToArabicConverter.convert(b)));
     }
 
-    protected int romanToArabic(String number) {
-        return IntStream.rangeClosed(0, 200).filter((i) -> romanNumeral.transform(i).equals(number)).findFirst().orElseThrow(() -> new NotValidNumberException(number));
-    }
 }

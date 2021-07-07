@@ -2,15 +2,15 @@ package school.sdet.v2021.task1;
 
 import org.junit.jupiter.api.*;
 import school.sdet.v2021.NotValidNumberException;
-import school.sdet.v2021.ObfuscatedRomanNumerals;
-import school.sdet.v2021.RomanNumerals;
+import school.sdet.v2021.ObfuscatedArabicToRomanConverter;
+import school.sdet.v2021.ArabicToRomanConverter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RomanNumeralsShould {
+public class ArabicToRomanConverterShould {
 
-    private RomanNumerals romanNumerals;
+    private ArabicToRomanConverter arabicToRomanConverter;
 
     @BeforeAll
     static void beforeAll() {
@@ -25,15 +25,15 @@ public class RomanNumeralsShould {
     @BeforeEach
     void beforeEach() {
         System.out.println(" -- Preparing anything for all tests before execution of each test");
-        romanNumerals = new ObfuscatedRomanNumerals();
+        arabicToRomanConverter = new ObfuscatedArabicToRomanConverter();
     }
 
     @Test
     void transformToRoman() {
-        assertEquals("", romanNumerals.transform(0));
-        assertEquals("I", romanNumerals.transform(1));
+        assertEquals("", arabicToRomanConverter.convert(0));
+        assertEquals("I", arabicToRomanConverter.convert(1));
 
-        assertThrows(NotValidNumberException.class, () -> romanNumerals.transform(-1));
+        assertThrows(NotValidNumberException.class, () -> arabicToRomanConverter.convert(-1));
         /**
          * TODO
          *
@@ -54,7 +54,7 @@ public class RomanNumeralsShould {
     @AfterEach
     void afterEach() {
         System.out.println(" -- Destroying/closing anything for all tests after execution of each test");
-        romanNumerals = null;
+        arabicToRomanConverter = null;
     }
 
 }
