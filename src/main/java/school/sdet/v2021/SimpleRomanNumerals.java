@@ -5,7 +5,7 @@ public class SimpleRomanNumerals implements RomanNumerals {
     @Override
     public String transform(int number) throws NotValidNumberException {
         if (number < 0 || number > 200) {
-            throw new NotValidNumberException();
+            throw new NotValidNumberException(number);
         }
 
         if (number < 1) {

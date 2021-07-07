@@ -24,14 +24,14 @@ public class ObfuscatedRomanNumerals implements RomanNumerals {
     @Override
     public String transform(int number) throws NotValidNumberException {
         if (number < 0) {
-            throw new NotValidNumberException();
+            throw new NotValidNumberException(number);
         }
 
         return MAP.get(MAP.keySet()
                 .stream()
                 .filter((k) -> k > number)
                 .mapToInt(Integer::intValue)
-                .min().orElseThrow(NotValidNumberException::new))
+                .min().orElseThrow(() -> new NotValidNumberException(number)))
                 .apply(number);
 
     }
